@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { FlashMessagesModule } from "angular2-flash-messages";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -22,6 +23,7 @@ import { AddTaskComponent } from "./add-task/add-task.component";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    FlashMessagesModule.forRoot(),
     RouterModule.forRoot([
       {
         path: "tasks/add",

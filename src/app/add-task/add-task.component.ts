@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { TaskService } from "../task.service";
 import { Router } from "@angular/router";
+import { FlashMessagesService } from "angular2-flash-messages";
 import { Task } from "../task";
 
 @Component({
@@ -15,10 +16,21 @@ export class AddTaskComponent implements OnInit {
   start_date: String;
   end_date: String;
 
-  constructor(private taskService: TaskService, private router: Router) {}
+  constructor(
+    private taskService: TaskService,
+    private router: Router,
+    private flashMessage: FlashMessagesService
+  ) {}
 
   ngOnInit() {}
 
+  onReset() {
+    this.task = "";
+    this.parent = "";
+    this.priority = 0;
+    this.start_date = "";
+    this.end_date = "";
+  }
   onTaskSubmit() {
     const newTask = {
       task: this.task,
@@ -27,10 +39,19 @@ export class AddTaskComponent implements OnInit {
       start_date: this.start_date,
       end_date: this.end_date
     };
-    console.log(newTask);
-    this.taskService.addTask(newTask).subscribe(data => {
-      console.log(data);
-      this.router.navigate(["/tasks"]);
-    });
+    if (!this.taskService.validateTask(newTask)) {
+      this.flashMessage.show("Fill in all mandatory details", {
+        cssClass: "alert-danger",
+        timeout: 3000
+      });
+    } else {
+      this.taskService.addTask(newTask).subscribe(data => {
+        this.flashMessage.show("Task Created Successfully", {
+          cssClass: "alert-success",
+          timeout: 3000
+        });
+        this.router.navigate(["/tasks"]);
+      });
+    }
   }
 }

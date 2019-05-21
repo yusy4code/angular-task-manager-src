@@ -9,15 +9,22 @@ import { Task } from "./task";
   providedIn: "root"
 })
 export class TaskService {
-  url = "https://jsonplaceholder.typicode.com/todos/1";
   getTaskUrl = "http://localhost:3000/tasks";
   taskCreateUrl = "http://localhost:3000/tasks/new";
 
   constructor(private http: HttpClient) {}
 
-  getTodo() {
-    console.log("todo coming");
-    return this.http.get(this.url);
+  validateTask(task) {
+    if (
+      task.task == undefined ||
+      task.priority == undefined ||
+      task.start_date == undefined ||
+      task.end_date == undefined
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
   getTasks() {
     return this.http.get(this.getTaskUrl);
