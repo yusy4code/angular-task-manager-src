@@ -26,8 +26,26 @@ export class TaskService {
       return true;
     }
   }
+
+  getTask(id): any {
+    let url = this.getTaskUrl + "/" + id;
+    console.log(url);
+    return this.http.get(url);
+  }
+
   getTasks() {
     return this.http.get(this.getTaskUrl);
+  }
+
+  updateTask(task_id: number, updatedTask: Task): Observable<Task> {
+    let updateUrl = this.getTaskUrl + "/" + task_id;
+    console.log(updateUrl);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    return this.http.put<Task>(updateUrl, updatedTask, httpOptions);
   }
 
   addTask(task: Task): Observable<Task> {

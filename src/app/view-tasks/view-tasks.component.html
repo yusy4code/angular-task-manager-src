@@ -39,10 +39,10 @@
       <td>{{ task.task }}</td>
       <td>{{ task.parent }}</td>
       <td>{{ task.priority }}</td>
-      <td>{{ task.start_date }}</td>
-      <td>{{ task.end_date }}</td>
+      <td>{{ task.start_date.substring(0,10) }}</td>
+      <td>{{ task.end_date.substring(0,10) }}</td>
       <td>
-        <button class="btn btn-primary mr-1">Edit</button>
+        <button class="btn btn-primary mr-1" [routerLink]="['/tasks', task.task_id]">Edit</button>
         <button class="btn btn-primary mr-1">End Task</button>
       </td>
     </tr>

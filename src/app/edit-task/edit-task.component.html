@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2 class="text-center">Edit Task</h2>
+  <form>
+    <fieldset>
+      <div class="form-group row justify-content-md-center">
+        <label for="task" class="col-sm-2 col-form-label">Task: *</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="task" name="task" [(ngModel)]="task">
+        </div>
+      </div>
+      <div class="form-group row justify-content-md-center">
+        <label for="parent" class="col-sm-2 col-form-label">Parent Task:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="parent" name="parent" [(ngModel)]="parent">
+        </div>
+      </div>
+      <div class="form-group row justify-content-md-center">
+        <label for="priority" class="col-sm-2 col-form-label">Priority: *</label>
+        <div class="col-sm-5">
+          <input type="number" min="1" max="30" class="form-control" id="priority" name="priority" [(ngModel)]="priority">
+        </div>
+      </div>
+      <div class="form-group row justify-content-md-center">
+        <label for="start_date" class="col-sm-2 col-form-label">Start Date: *</label>
+        <div class="col-sm-5">
+          <input type="date" class="form-control" id="start_date" name="start_date" [(ngModel)]="start_date">
+        </div>
+      </div>
+      <div class="form-group row justify-content-md-center">
+        <label for="end_date" class="col-sm-2 col-form-label">End Date: *</label>
+        <div class="col-sm-5">
+          <input type="date" class="form-control" id="end_date" name="end_date" [(ngModel)]="end_date">
+        </div>
+      </div>
+    </fieldset>
+    <div class="row justify-content-md-center">
+      <button type="submit" class="btn btn-primary mr-2" (click)="onTaskUpdate()">Update Task</button>
+      <button type="reset" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>

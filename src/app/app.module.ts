@@ -10,13 +10,15 @@ import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { ViewTasksComponent } from "./view-tasks/view-tasks.component";
 import { AddTaskComponent } from "./add-task/add-task.component";
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     ViewTasksComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,9 @@ import { AddTaskComponent } from "./add-task/add-task.component";
       {
         path: "tasks/add",
         component: AddTaskComponent
+      },{
+        path:"tasks/:id",
+        component: EditTaskComponent
       },
       {
         path: "tasks",
