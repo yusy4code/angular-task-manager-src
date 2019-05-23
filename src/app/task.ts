@@ -4,4 +4,5 @@ export class Task {
   priority: number;
   start_date: String;
   end_date: String;
+  is_completed: boolean;
 }

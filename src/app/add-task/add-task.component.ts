@@ -15,6 +15,7 @@ export class AddTaskComponent implements OnInit {
   priority: number;
   start_date: String;
   end_date: String;
+  is_completed: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -37,7 +38,8 @@ export class AddTaskComponent implements OnInit {
       parent: this.parent,
       priority: this.priority,
       start_date: this.start_date,
-      end_date: this.end_date
+      end_date: this.end_date,
+      is_completed: this.is_completed
     };
     if (!this.taskService.validateTask(newTask)) {
       this.flashMessage.show("Fill in all mandatory details", {

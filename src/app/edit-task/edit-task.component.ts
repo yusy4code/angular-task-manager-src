@@ -17,6 +17,7 @@ export class EditTaskComponent implements OnInit {
   priority: number = 0;
   start_date: String = "";
   end_date: String = "";
+  is_completed: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class EditTaskComponent implements OnInit {
       this.priority = response.data[0].priority;
       this.start_date = response.data[0].start_date.substring(0, 10);
       this.end_date = response.data[0].end_date.substring(0, 10);
+      this.is_completed = response.data[0].priority;
     });
   }
 
@@ -47,7 +49,8 @@ export class EditTaskComponent implements OnInit {
       parent: this.parent,
       priority: this.priority,
       start_date: this.start_date,
-      end_date: this.end_date
+      end_date: this.end_date,
+      is_completed: this.is_completed
     };
     if (!this.taskService.validateTask(updatedTask)) {
       this.flashMessage.show("Fill in all mandatory details", {

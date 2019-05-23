@@ -48,6 +48,17 @@ export class TaskService {
     return this.http.put<Task>(updateUrl, updatedTask, httpOptions);
   }
 
+  endTask(task_id: number): Observable<Task> {
+    let updateUrl = this.getTaskUrl + "/end/" + task_id;
+    console.log(updateUrl);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    };
+    return this.http.put<Task>(updateUrl, httpOptions);
+  }
+
   addTask(task: Task): Observable<Task> {
     const httpOptions = {
       headers: new HttpHeaders({
