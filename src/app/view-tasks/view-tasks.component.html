@@ -3,7 +3,7 @@
   <div class="pt-3">
     <div class="row">
       <div class="col-sm">
-        Task: <input type="text">
+        Task: <input type="text" name="taskFilter" [(ngModel)]="taskFilter">
       </div>
       <div class="col-sm">
         Parent Task: <input type="text">
@@ -35,7 +35,7 @@
       <th>End</th>
       <th>Action</th>
     </tr>
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of filteredTask">
       <td>{{ task.task }}</td>
       <td>{{ task.parent }}</td>
       <td>{{ task.priority }}</td>

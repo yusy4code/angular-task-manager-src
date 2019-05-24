@@ -11,6 +11,25 @@ import { Router } from "@angular/router";
 })
 export class ViewTasksComponent implements OnInit {
   tasks: Task[];
+  filteredTask: Task[];
+  _taskFilter: string;
+
+  get taskFilter(): string {
+    return this._taskFilter;
+  }
+  set taskFilter(value: string) {
+    this._taskFilter = value;
+    this.filteredTask = this.taskFilter
+      ? this.performTaskFilter(this.taskFilter)
+      : this.tasks;
+  }
+  performTaskFilter(filterBy: string) {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.tasks.filter((singletask: Task) => {
+      return singletask.task.toLocaleLowerCase().indexOf(filterBy) !== -1;
+    });
+  }
+
   constructor(
     private taskService: TaskService,
     private router: Router,
@@ -20,7 +39,7 @@ export class ViewTasksComponent implements OnInit {
   ngOnInit() {
     this.taskService.getTasks().subscribe(data => {
       this.tasks = <any>data;
-      console.log(this.tasks);
+      this.filteredTask = this.tasks;
     });
   }
 
@@ -28,7 +47,7 @@ export class ViewTasksComponent implements OnInit {
     console.log(id);
     this.taskService.endTask(id).subscribe(data => {
       console.log(data);
-      this.flashMessage.show("Task Updated Successfully", {
+      this.flashMessage.show("Task Ended Successfully", {
         cssClass: "alert-success",
         timeout: 3000
       });
